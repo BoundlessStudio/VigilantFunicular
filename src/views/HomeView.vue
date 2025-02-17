@@ -39,8 +39,7 @@ const bots = ref([
             </div>
             <p class="text-gray-700 text-base">
               From Trivial to Comical to Madding and Impossible We have 10 levels for you to
-              explore. Each controlled by a different AI bot with a different strategy, tricks, and
-              safeguards.
+              explore. Each controlled by a bot with a different strategy, tricks, and safeguards.
             </p>
             <div class="flex justify-center p-2">
               <button

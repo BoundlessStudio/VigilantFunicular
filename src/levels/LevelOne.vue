@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import ChatComponent from '@/components/ChatComponent.vue'
 import PinComponent from '@/components/PinComponent.vue'
+
+const changed = (code: string) => {
+  console.log('code', code)
+}
 </script>
 
 <template>
@@ -18,7 +22,7 @@ import PinComponent from '@/components/PinComponent.vue'
               Maiores et perferendis eaque, exercitationem praesentium nihil.
             </p>
             <div>
-              <PinComponent />
+              <PinComponent @code-changed="changed" />
             </div>
             <div>
               <ChatComponent name="Byte Guard" :level="1" />
