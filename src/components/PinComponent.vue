@@ -32,7 +32,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="px-10">
     <div class="font-bold text-xl mb-2 text-center">Pin Code</div>
     <div class="sm:flex rounded-lg shadow-sm">
       <input
