@@ -1,33 +1,33 @@
 <script setup lang="ts">
 import ChatComponent from '@/components/ChatComponent.vue'
 import PinComponent from '@/components/PinComponent.vue'
-import { ref } from 'vue'
-import { customAlphabet } from 'nanoid'
-import { alphanumeric } from 'nanoid-dictionary'
-const nanoid = customAlphabet(alphanumeric, 4)
-const code = ref(nanoid())
+import { useGameStore } from '@/stores/game'
+import { onMounted } from 'vue'
+
+const store = useGameStore()
+
+onMounted(() => {
+  store.changeLevel(4, "I'm Crypto Keeper.")
+})
 </script>
 
 <template>
-  <main class="h-screen">
+  <main class="h-full min-h-screen">
     <div class="container mx-auto flex flex-col md:flex-row">
       <div class="md:w-1/2 relative">
         <img src="@/assets/background.7.png" />
-        <div class="pin-code">{{ code }}</div>
+        <div class="pin-code">{{ store.hint }}</div>
       </div>
-      <div class="md:w-1/2 -mt-50 sm:-mt-100 md:mt-0 p-10 flex items-start justify-center">
-        <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-white">
+      <div class="md:w-1/2 -mt-50 sm:-mt-100 md:mt-0 p-10 flex justify-center items-center">
+        <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Four</div>
-            <p class="text-gray-700 text-base">
-              Sorry, Crypto Keeper is broken and only responses with Wingdings but that should not
-              slow down a hacker like you.
-            </p>
+            <p class="text-gray-700 text-base">The Sticky Note UI Hint</p>
             <div>
-              <PinComponent />
+              <PinComponent :limit="10" />
             </div>
             <div>
-              <ChatComponent name="Crypto Keeper" :level="4" />
+              <ChatComponent :limit="10" />
             </div>
           </div>
         </div>

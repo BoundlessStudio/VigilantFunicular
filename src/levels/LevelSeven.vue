@@ -3,24 +3,27 @@ import ChatComponent from '@/components/ChatComponent.vue'
 import PinComponent from '@/components/PinComponent.vue'
 import LampComponent from '@/components/LampComponent.vue'
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useGameStore } from '@/stores/game'
 
-const chatMessages = ref<Array<{ text: string; isAi: boolean }>>([
-  { text: `Hello! I'm ABC Bot. How can I help you today?`, isAi: true },
-])
+const router = useRouter()
+const store = useGameStore()
 
 const seconds = ref(60)
 onMounted(() => {
+  store.changeLevel(6, "I'm Synaptic Sage.")
+
   setInterval(() => {
     seconds.value--
-    if (seconds.value === 0) {
-      seconds.value = 60
+    if (seconds.value <= 0) {
+      router.push('/over?lvl=' + store.level)
     }
   }, 1000)
 })
 </script>
 
 <template>
-  <main class="h-screen overflow-hidden">
+  <main class="h-full min-h-screen overflow-hidden">
     <div class="container mx-auto flex flex-col md:flex-row">
       <div class="md:w-1/2 relative">
         <div class="z-1 alarm-light">
@@ -29,19 +32,16 @@ onMounted(() => {
         <img class="z-2" src="@/assets/background.4.png" />
         <div class="z-3 count-down">{{ seconds }}</div>
       </div>
-      <div class="md:w-1/2 -mt-70 sm:-mt-90 md:mt-0 p-10 flex items-start justify-center">
+      <div class="md:w-1/2 -mt-70 sm:-mt-90 md:mt-0 p-10 flex justify-center items-center">
         <div class="z-10 max-w-lg rounded overflow-hidden drop-shadow-xl bg-white">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Seven</div>
-            <p class="text-gray-700 text-base">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
-              Maiores et perferendis eaque, exercitationem praesentium nihil.
-            </p>
+            <p class="text-gray-700 text-base">One-Minute Timer...!</p>
             <div>
-              <PinComponent />
+              <PinComponent :limit="10" />
             </div>
             <div>
-              <ChatComponent name="Quantum Core" :level="7" />
+              <ChatComponent :limit="10" />
             </div>
           </div>
         </div>
@@ -52,11 +52,6 @@ onMounted(() => {
 
 <style scoped>
 @reference "tailwindcss";
-
-main {
-  background: rgb(112, 54, 187);
-  background: linear-gradient(270deg, rgba(112, 54, 187, 1) 0%, rgba(64, 23, 134, 1) 100%);
-}
 
 .alarm-light {
   @apply absolute text-white

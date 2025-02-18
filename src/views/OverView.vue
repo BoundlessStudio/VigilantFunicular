@@ -1,4 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter, useRoute } from 'vue-router'
+import { useGameStore } from '@/stores/game'
+import { ref } from 'vue'
+
+const store = useGameStore()
+const router = useRouter()
+const route = useRoute()
+
+// Get Query String lvl for which level cause the game over
+const lvl = route.query.lvl as string
+const level = ref(lvl)
+console.log('game over', level.value)
+
+const startGame = async () => {
+  await store.start()
+  document.startViewTransition(() => {
+    router.push('/lvl/1')
+  })
+}
+</script>
 
 <template>
   <main class="h-screen">
@@ -16,6 +36,7 @@
             </p>
             <div class="flex justify-center p-2">
               <button
+                @click="startGame"
                 class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
               >
                 START

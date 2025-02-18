@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useGameStore } from '@/stores/game'
+
+const store = useGameStore()
+const router = useRouter()
 
 const bots = ref([
   'https://api.dicebear.com/7.x/bottts/svg?seed=1',
@@ -13,10 +18,15 @@ const bots = ref([
   'https://api.dicebear.com/7.x/bottts/svg?seed=9',
   'https://api.dicebear.com/7.x/bottts/svg?seed=10',
 ])
+
+const startGame = async () => {
+  await store.start()
+  router.push('/lvl/1')
+}
 </script>
 
 <template>
-  <main class="h-screen">
+  <main class="min-h-screen h-full">
     <div class="container mx-auto flex flex-col md:flex-row">
       <div class="md:w-1/2">
         <img src="@/assets/background.main.png" />
@@ -43,6 +53,7 @@ const bots = ref([
             </p>
             <div class="flex justify-center p-2">
               <button
+                @click="startGame"
                 class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
               >
                 START
