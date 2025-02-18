@@ -18,7 +18,6 @@ const codeChanged = async (code: string) => {
   try {
     attempts.value++
     const data = await store.pin(code)
-    data.success = true
     if (data.success) {
       router.push('/lvl/' + (store.level + 1))
       return
