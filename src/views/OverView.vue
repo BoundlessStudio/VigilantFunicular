@@ -12,7 +12,7 @@ const router = useRouter()
 const route = useRoute()
 
 // Get Query String lvl for which level cause the game over
-const lvl = route.query.lvl as string
+const lvl = parseInt(route.query.lvl as string)
 const level = ref(lvl)
 // console.log('game over', level.value)
 
