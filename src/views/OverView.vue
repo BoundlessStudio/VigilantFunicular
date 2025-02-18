@@ -44,8 +44,8 @@ const startGame = async () => {
             <div class="flex gap-2 py-2">
               <ul v-for="n in 10" :key="n">
                 <li v-if="n <= level" class="text-green-500">
-                  <TimeIcon v-if="n == 4" />
-                  <AlertIcon v-else-if="n == 7" />
+                  <AlertIcon v-if="n == 4" />
+                  <TimeIcon v-else-if="n == 7" />
                   <UnlockIcon v-else />
                 </li>
                 <li v-else class="text-amber-500">
