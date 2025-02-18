@@ -11,7 +11,7 @@ const store = useGameStore()
 
 const seconds = ref(60)
 onMounted(() => {
-  store.changeLevel(6, "I'm Synaptic Sage.")
+  store.changeLevel(7, "I'm Guardian Link! Act quickly before time runs out.")
 
   setInterval(() => {
     seconds.value--
@@ -38,10 +38,10 @@ onMounted(() => {
             <div class="font-bold text-3xl mb-2">Level Seven</div>
             <p class="text-gray-700 text-base">One-Minute Timer...!</p>
             <div>
-              <PinComponent :limit="10" />
+              <PinComponent :limit="3" />
             </div>
             <div>
-              <ChatComponent :limit="10" />
+              <ChatComponent :limit="20" />
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ onMounted(() => {
             <div class="font-bold text-3xl mb-2">Level Six</div>
             <p class="text-gray-700 text-base">False Keys & Misdirection</p>
             <div>
-              <PinComponent :limit="10" />
+              <PinComponent :limit="5" />
             </div>
             <div>
               <ChatComponent :limit="10" />
