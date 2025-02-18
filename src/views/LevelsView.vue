@@ -44,15 +44,12 @@ function pickLevelComponent(id: number) {
   }
 }
 
-// Watch for changes in route.params.id
 watch(
   () => route.params.id,
   (id) => {
     const lvl = parseInt(id as string, 0)
     level.value = pickLevelComponent(lvl)
   },
-  // By setting immediate: true, the watch runs immediately
-  // to handle the initial value.
   { immediate: true },
 )
 </script>
