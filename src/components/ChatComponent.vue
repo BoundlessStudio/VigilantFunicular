@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useGameStore } from '@/stores/game'
 import { useRouter } from 'vue-router'
+import InfoIcon from './InfoIcon.vue'
 
 const router = useRouter()
 const store = useGameStore()
@@ -32,7 +33,20 @@ const font = computed(() => {
 
 <template>
   <div class="flex flex-col">
-    <div class="flex-none flex gap-4 my-6">
+    <div v-if="disable">
+      <div
+        class="flex items-center p-3 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50"
+        role="alert"
+      >
+        <InfoIcon />
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">Warning!</span> Chat limit reached but you can still guess the
+          pin code.
+        </div>
+      </div>
+    </div>
+    <div v-else class="flex-none flex gap-4 my-6">
       <input
         v-model="message"
         @keyup.enter="sendMessage"
@@ -41,7 +55,6 @@ const font = computed(() => {
         class="input flex-1 bg-gray-200 rounded p-2"
       />
       <button
-        :disabled="disable"
         @click="sendMessage"
         class="bg-purple-500 hover:bg-purple-700 disable:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
       >

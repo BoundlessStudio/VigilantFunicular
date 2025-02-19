@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import { useGameStore } from '@/stores/game'
 import { useRouter } from 'vue-router'
 
@@ -10,13 +10,14 @@ const params = defineProps<{ limit: number }>()
 
 const pinInputs = ref<HTMLInputElement[]>([])
 const code = ref('')
+const state = ref<boolean>(false)
 const attempts = ref(0)
-
-const state = ref<boolean | undefined>(undefined)
+const left = computed(() => params.limit - attempts.value)
 
 const codeChanged = async (code: string) => {
   try {
     attempts.value++
+
     const data = await store.pin(code)
     if (data.success) {
       router.push('/lvl/' + (store.level + 1))
@@ -27,7 +28,7 @@ const codeChanged = async (code: string) => {
       return
     }
 
-    state.value = false
+    state.value = true
   } catch (error) {
     console.error(error)
     router.push('/')
@@ -35,9 +36,7 @@ const codeChanged = async (code: string) => {
 }
 
 watch(code, (newCode) => {
-  if (newCode?.length === 0) {
-    state.value = undefined
-  } else if (newCode?.length === 4) {
+  if (newCode?.length === 4) {
     pinInputs.value[3].blur()
     codeChanged(newCode)
   }
@@ -45,6 +44,10 @@ watch(code, (newCode) => {
 
 onMounted(() => {
   pinInputs.value.forEach((input, index) => {
+    input.addEventListener('focus', () => {
+      input.value = ''
+    })
+
     input.addEventListener('input', () => {
       code.value = pinInputs.value.map((el) => el.value).join('')
 
@@ -66,11 +69,19 @@ onMounted(() => {
   <div>
     <div class="font-bold text-2xl mb-2 text-center">Pin Code</div>
     <div class="px-10">
+      <div v-if="limit !== left" class="relative flex size-4">
+        <div
+          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75 mt-2 -ml-1"
+        ></div>
+        <div
+          class="relative inline-flex size-4 rounded-full text-white bg-red-500 text-sm pl-1 mt-2 -ml-1"
+          style="font-family: monospace"
+        >
+          {{ left }}
+        </div>
+      </div>
       <div
-        :class="[
-          'flex p-1 border-4 rounded-lg',
-          state == undefined ? 'border-transparent' : state ? 'border-green-500' : 'border-red-500',
-        ]"
+        :class="['flex p-1 border-4 rounded-lg', state ? 'border-red-500' : 'border-transparent']"
       >
         <input
           v-for="(input, index) in 4"
