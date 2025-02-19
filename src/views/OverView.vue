@@ -3,9 +3,14 @@ import LockIcon from '@/components/LockIcon.vue'
 import UnlockIcon from '@/components/UnlockIcon.vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '@/stores/game'
+import { onMounted } from 'vue'
 
 const store = useGameStore()
 const router = useRouter()
+
+onMounted(() => {
+  console.log('level', store.level)
+})
 
 const startGame = () => {
   router.push('/game')
@@ -29,7 +34,7 @@ const startGame = () => {
             </p>
             <div class="flex gap-2 py-2">
               <ul v-for="n in 10" :key="n">
-                <li v-if="n <= store.level" class="text-green-500">
+                <li v-if="n < store.level" class="text-green-500">
                   <UnlockIcon />
                 </li>
                 <li v-else class="text-amber-500">

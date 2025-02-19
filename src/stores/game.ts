@@ -37,12 +37,7 @@ export const useGameStore = defineStore('game', () => {
   }
   const next = () => {
     level.value++
-    return level.value > 0 && level.value <= 10
   }
-  // const changeLevel = async (lvl: number, prompt: string) => {
-  //   level.value = lvl
-  //   messages.value = [{ role: 'assistant', content: prompt }]
-  // }
 
   const pin = async (code: string): Promise<PinOutputDto> => {
     const body = {

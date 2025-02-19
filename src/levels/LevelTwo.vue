@@ -8,7 +8,6 @@ const store = useGameStore()
 
 onMounted(() => {
   store.reset("Halt! I'm Cipher Sentinel.")
-  // store.changeLevel(2, "Halt! I'm Cipher Sentinel.")
 })
 </script>
 

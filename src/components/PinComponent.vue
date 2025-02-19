@@ -21,6 +21,7 @@ const codeChanged = async (code: string) => {
     const data = await store.pin(code)
     if (data.success) {
       store.next()
+      return
     }
     if (attempts.value >= params.limit) {
       router.push('/gg')
