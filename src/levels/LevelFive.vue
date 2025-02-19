@@ -7,7 +7,8 @@ import { onMounted } from 'vue'
 const store = useGameStore()
 
 onMounted(() => {
-  store.changeLevel(5, "I'm Neural Ninja.")
+  store.reset("I'm Neural Ninja.")
+  // store.changeLevel(5, "I'm Neural Ninja.")
 })
 </script>
 

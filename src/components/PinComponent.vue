@@ -20,18 +20,17 @@ const codeChanged = async (code: string) => {
 
     const data = await store.pin(code)
     if (data.success) {
-      router.push('/lvl/' + (store.level + 1))
-      return
+      store.next()
     }
     if (attempts.value >= params.limit) {
-      router.push('/over?lvl=' + store.level)
+      router.push('/over')
       return
     }
 
     state.value = true
   } catch (error) {
     console.error(error)
-    router.push('/')
+    router.push('/over?error=pin')
   }
 }
 
@@ -44,8 +43,10 @@ watch(code, (newCode) => {
 
 onMounted(() => {
   pinInputs.value.forEach((input, index) => {
-    input.addEventListener('focus', () => {
-      input.value = ''
+    input.addEventListener('click', () => {
+      pinInputs.value.forEach((el) => {
+        el.value = ''
+      })
     })
 
     input.addEventListener('input', () => {

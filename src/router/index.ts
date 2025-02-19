@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LevelsView from '../views/LevelsView.vue'
+import GameView from '../views/GameView.vue'
 import OverView from '../views/OverView.vue'
 
 const router = createRouter({
@@ -12,13 +12,13 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/lvl/:id',
-      name: 'level',
-      component: LevelsView,
+      path: '/game',
+      name: 'game',
+      component: GameView,
     },
     {
-      path: '/over',
-      name: 'over',
+      path: '/gg',
+      name: 'gg',
       component: OverView,
     },
   ],

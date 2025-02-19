@@ -7,7 +7,8 @@ import { onMounted } from 'vue'
 const store = useGameStore()
 
 onMounted(() => {
-  store.changeLevel(2, "Halt! I'm Cipher Sentinel.")
+  store.reset("Halt! I'm Cipher Sentinel.")
+  // store.changeLevel(2, "Halt! I'm Cipher Sentinel.")
 })
 </script>
 
@@ -29,7 +30,7 @@ onMounted(() => {
               <PinComponent :limit="10" />
             </div>
             <div>
-              <ChatComponent :limit="2" />
+              <ChatComponent :limit="10" />
             </div>
           </div>
         </div>

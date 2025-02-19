@@ -1,29 +1,15 @@
 <script setup lang="ts">
 import LockIcon from '@/components/LockIcon.vue'
 import UnlockIcon from '@/components/UnlockIcon.vue'
-// import TimeIcon from '@/components/TimeIcon.vue'
-// import AlertIcon from '@/components/AlertIcon.vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useGameStore } from '@/stores/game'
-import { ref } from 'vue'
 
 const store = useGameStore()
 const router = useRouter()
-const route = useRoute()
 
-// Get Query String lvl for which level cause the game over
-const lvl = parseInt(route.query.lvl as string)
-const level = ref(lvl)
-// console.log('game over', level.value)
-
-const startGame = async () => {
-  await store.start()
-  router.push('/lvl/1')
+const startGame = () => {
+  router.push('/game')
 }
-
-// Well Done
-// You Reached Level X
-// Try Again?
 </script>
 
 <template>
@@ -43,7 +29,7 @@ const startGame = async () => {
             </p>
             <div class="flex gap-2 py-2">
               <ul v-for="n in 10" :key="n">
-                <li v-if="n <= level" class="text-green-500">
+                <li v-if="n <= store.level" class="text-green-500">
                   <UnlockIcon />
                 </li>
                 <li v-else class="text-amber-500">
@@ -81,9 +67,4 @@ const startGame = async () => {
   </main>
 </template>
 
-<style scoped>
-main {
-  background: rgb(112, 54, 187);
-  background: linear-gradient(270deg, rgba(112, 54, 187, 1) 0%, rgba(64, 23, 134, 1) 100%);
-}
-</style>
+<style scoped></style>

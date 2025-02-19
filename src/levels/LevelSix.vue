@@ -7,7 +7,8 @@ import { onMounted } from 'vue'
 const store = useGameStore()
 
 onMounted(() => {
-  store.changeLevel(6, "I'm Synaptic Sage.")
+  store.reset("I'm Synaptic Sage.")
+  // store.changeLevel(6, "I'm Synaptic Sage.")
 })
 </script>
 

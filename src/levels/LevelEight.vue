@@ -7,7 +7,8 @@ import { onMounted } from 'vue'
 const store = useGameStore()
 
 onMounted(() => {
-  store.changeLevel(8, "I'm Binary Boss.")
+  store.reset("I'm Binary Boss.")
+  // store.changeLevel(8, "I'm Binary Boss.")
 })
 </script>
 

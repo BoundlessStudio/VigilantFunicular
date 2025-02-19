@@ -21,9 +21,4 @@
   </main>
 </template>
 
-<style scoped>
-main {
-  background: rgb(112, 54, 187);
-  background: linear-gradient(270deg, rgba(112, 54, 187, 1) 0%, rgba(64, 23, 134, 1) 100%);
-}
-</style>
+<style scoped></style>

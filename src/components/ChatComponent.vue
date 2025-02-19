@@ -9,20 +9,24 @@ const store = useGameStore()
 
 const params = defineProps<{ limit: number }>()
 
-const disable = ref<boolean | undefined>(undefined)
+const disable = ref(false)
+const readonly = ref(false)
 const message = ref('')
 
 const sendMessage = async () => {
   try {
     if (!message.value) return
 
+    disable.value = true
     const prompt = message.value
     message.value = ''
     const amount = await store.chat(prompt)
-    disable.value = amount >= params.limit
+    readonly.value = amount >= params.limit
   } catch (error) {
     console.error(error)
-    router.push('/')
+    router.push('/over?error=chat')
+  } finally {
+    disable.value = false
   }
 }
 
@@ -33,7 +37,7 @@ const font = computed(() => {
 
 <template>
   <div class="flex flex-col">
-    <div v-if="disable">
+    <div v-if="readonly">
       <div
         class="flex items-center p-3 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50"
         role="alert"
@@ -55,8 +59,9 @@ const font = computed(() => {
         class="input flex-1 bg-gray-200 rounded p-2"
       />
       <button
+        :disabled="disable"
         @click="sendMessage"
-        class="bg-purple-500 hover:bg-purple-700 disable:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+        class="bg-purple-500 hover:bg-purple-700 disabled:bg-zinc-500 text-white font-bold py-2 px-4 rounded cursor-pointer"
       >
         Send
       </button>

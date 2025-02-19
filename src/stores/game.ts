@@ -12,26 +12,31 @@ import {
 } from '@/api/game'
 
 export const useGameStore = defineStore('game', () => {
-  const level = ref(0)
+  const difficulty = ref(1)
+  const level = ref(1)
   const messages = ref<ChatMessageDto[]>([])
-  const hint = ref('****')
+  const hint = ref('')
 
   const start = async () => {
-    try {
-      const body = {
-        difficulty: 1,
-      } as StartInputDto
-      const data = await startGame(body)
-      hint.value = data.hint
-    } catch (error) {
-      console.error(error)
-    }
+    level.value = 1
+    const body = {
+      difficulty: difficulty.value,
+    } as StartInputDto
+    const data = await startGame(body)
+    hint.value = data.hint
   }
 
-  const changeLevel = async (lvl: number, prompt: string) => {
-    level.value = lvl
+  const reset = async (prompt: string) => {
     messages.value = [{ role: 'assistant', content: prompt }]
   }
+  const next = () => {
+    level.value++
+    return level.value > 0 && level.value <= 10
+  }
+  // const changeLevel = async (lvl: number, prompt: string) => {
+  //   level.value = lvl
+  //   messages.value = [{ role: 'assistant', content: prompt }]
+  // }
 
   const pin = async (code: string): Promise<PinOutputDto> => {
     const body = {
@@ -53,5 +58,5 @@ export const useGameStore = defineStore('game', () => {
     return messages.value.filter((m) => m.role === 'user').length
   }
 
-  return { level, hint, messages, start, pin, chat, changeLevel }
+  return { level, hint, messages, start, pin, chat, reset, next }
 })

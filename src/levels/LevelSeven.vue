@@ -11,7 +11,8 @@ const store = useGameStore()
 
 const seconds = ref(60)
 onMounted(() => {
-  store.changeLevel(7, "I'm Guardian Link! Act quickly before time runs out.")
+  store.reset("I'm Guardian Link! Act quickly before time runs out.")
+  // store.changeLevel(7, "I'm Guardian Link! Act quickly before time runs out.")
 
   setInterval(() => {
     seconds.value--

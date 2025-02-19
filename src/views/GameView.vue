@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { shallowRef, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { onMounted, shallowRef, watch } from 'vue'
+// import { useRoute } from 'vue-router'
+import { useGameStore } from '@/stores/game'
 import LevelUnknown from '@/levels/LevelUnknown.vue'
 import LevelOne from '@/levels/LevelOne.vue'
 import LevelTwo from '@/levels/LevelTwo.vue'
@@ -12,8 +13,10 @@ import LevelSeven from '@/levels/LevelSeven.vue'
 import LevelEight from '@/levels/LevelEight.vue'
 import LevelNine from '@/levels/LevelNine.vue'
 import LevelTen from '@/levels/LevelTen.vue'
+import { useRouter } from 'vue-router'
 
-const route = useRoute()
+const store = useGameStore()
+const router = useRouter()
 const level = shallowRef(LevelUnknown)
 
 // Helper to pick a component based on ID
@@ -45,13 +48,22 @@ function pickLevelComponent(id: number) {
 }
 
 watch(
-  () => route.params.id,
-  (id) => {
-    const lvl = parseInt(id as string, 0)
-    level.value = pickLevelComponent(lvl)
+  () => store.level,
+  (lvl) => {
+    if (lvl > 0 && lvl <= 10) level.value = pickLevelComponent(lvl)
+    else router.push('/over')
   },
   { immediate: true },
 )
+
+onMounted(async () => {
+  try {
+    await store.start()
+  } catch (error) {
+    console.log(error)
+    router.push('/over?error=start')
+  }
+})
 </script>
 
 <template>

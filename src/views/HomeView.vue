@@ -1,27 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+// import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useGameStore } from '@/stores/game'
-
-const store = useGameStore()
+// import { useGameStore } from '@/stores/game'
+// const store = useGameStore()
 const router = useRouter()
 
-const bots = ref([
-  'https://api.dicebear.com/7.x/bottts/svg?seed=1',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=2',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=3',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=4',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=5',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=6',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=7',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=8',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=9',
-  'https://api.dicebear.com/7.x/bottts/svg?seed=10',
-])
-
-const startGame = async () => {
-  await store.start()
-  router.push('/lvl/1')
+const startGame = () => {
+  router.push('/game')
 }
 </script>
 
@@ -41,9 +26,12 @@ const startGame = async () => {
             </p>
             <div class="font-bold text-xl mb-2 py-2">Levels</div>
             <div class="flex gap-2">
-              <ul v-for="bot in bots" :key="bot">
+              <ul v-for="i in 10" :key="i">
                 <li>
-                  <img :src="bot" class="w-12 h-12 rounded-full" />
+                  <img
+                    :src="'https://api.dicebear.com/7.x/bottts/svg?seed=' + i"
+                    class="w-12 h-12 rounded-full"
+                  />
                 </li>
               </ul>
             </div>
@@ -66,9 +54,4 @@ const startGame = async () => {
   </main>
 </template>
 
-<style scoped>
-main {
-  background: rgb(112, 54, 187);
-  background: linear-gradient(270deg, rgba(112, 54, 187, 1) 0%, rgba(64, 23, 134, 1) 100%);
-}
-</style>
+<style scoped></style>
