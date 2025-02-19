@@ -55,12 +55,9 @@ const startGame = async () => {
             <p class="text-gray-700 text-base">
               This game is a lesson about the security in Ai context. If you got through these
               levels then you have proved that. If you want to learn more about Ai security, have
-              level suggestions or found a bug, consider exploring the project
-              <a
-                href="https://github.com/BoundlessStudio/FictionalSuccotash/"
-                class="underline"
-                target="_blank"
-                >here</a
+              level suggestions or found a bug, consider lets us know
+              <a href="https://x.com/VenatioStudios" class="underline" target="_blank"
+                >@VenatioStudios</a
               >.
             </p>
             <div class="font-bold text-3xl py-4">Try Again?</div>
