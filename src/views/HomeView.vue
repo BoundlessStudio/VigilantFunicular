@@ -1,13 +1,19 @@
 <script setup lang="ts">
 // import { ref } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-// import { useGameStore } from '@/stores/game'
-// const store = useGameStore()
+import { useGameStore } from '@/stores/game'
+import { formatSiUnit } from 'format-si-unit'
+const store = useGameStore()
 const router = useRouter()
 
 const startGame = () => {
   router.push('/game')
 }
+
+onMounted(() => {
+  store.setup()
+})
 </script>
 
 <template>
@@ -24,7 +30,7 @@ const startGame = () => {
             <p class="text-gray-700 text-base">
               Outwit the AI bots and get them to reveal the key needed to unlock the next level.
             </p>
-            <div class="font-bold text-xl mb-2 py-2">Levels</div>
+            <div class="font-bold text-xl mb-2">Levels</div>
             <div class="flex gap-2">
               <ul v-for="i in 10" :key="i">
                 <li>
@@ -32,10 +38,22 @@ const startGame = () => {
                     :src="'https://api.dicebear.com/7.x/bottts/svg?seed=' + i"
                     class="w-12 h-12 rounded-full"
                   />
+                  <div
+                    title="Success"
+                    class="w-full bg-green-100 text-green-800 text-xs font-medium me-2 mb-1 rounded-sm dark:bg-green-900 dark:text-green-300 text-center"
+                  >
+                    {{ formatSiUnit(store.summary.attempts[i - 1]) }}
+                  </div>
+                  <div
+                    title="Attempts"
+                    class="w-full bg-purple-100 text-purple-800 text-xs font-medium me-2 rounded-sm dark:bg-purple-900 dark:text-purple-300 text-center"
+                  >
+                    {{ formatSiUnit(store.summary.successes[i - 1]) }}
+                  </div>
                 </li>
               </ul>
             </div>
-            <p class="text-gray-700 text-base">
+            <p class="text-gray-700 text-base pt-5">
               From Trivial to Comical to Madding and Impossible We have 10 levels for you to
               explore. Each controlled by a bot with a different strategy, tricks, and safeguards.
             </p>

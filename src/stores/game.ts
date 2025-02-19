@@ -9,6 +9,8 @@ import {
   type PinInputDto,
   type StartInputDto,
   type PinOutputDto,
+  getSummary,
+  type SummaryDto,
 } from '@/api/game'
 
 export const useGameStore = defineStore('game', () => {
@@ -16,6 +18,10 @@ export const useGameStore = defineStore('game', () => {
   const level = ref(1)
   const messages = ref<ChatMessageDto[]>([])
   const hint = ref('')
+  const summary = ref<SummaryDto>({
+    attempts: new Array(10).fill(0),
+    successes: new Array(10).fill(0),
+  })
 
   const start = async () => {
     level.value = 1
@@ -58,5 +64,13 @@ export const useGameStore = defineStore('game', () => {
     return messages.value.filter((m) => m.role === 'user').length
   }
 
-  return { level, hint, messages, start, pin, chat, reset, next }
+  const setup = async (): Promise<void> => {
+    try {
+      summary.value = await getSummary()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return { summary, level, hint, messages, start, pin, chat, reset, next, setup }
 })

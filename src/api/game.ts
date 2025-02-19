@@ -108,6 +108,27 @@ export interface StartOutputDto {
   hint: string
 }
 
+/**
+ *
+ * @export
+ * @interface SummaryDto
+ */
+export interface SummaryDto {
+  /**
+   *
+   * @type {number[]}
+   * @memberof SummaryDto
+   */
+  attempts: number[]
+
+  /**
+   *
+   * @type {number[]}
+   * @memberof SummaryDto
+   */
+  successes: number[]
+}
+
 const URL_BASE = import.meta.env.VITE_API_URL
 
 export async function startGame(body: StartInputDto): Promise<StartOutputDto> {
@@ -153,6 +174,21 @@ export async function completeChat(body: ChatInputDto): Promise<ChatOutputDto> {
   if (response.ok) {
     const data = await response.json()
     return data as ChatOutputDto
+  } else {
+    throw response
+  }
+}
+
+export async function getSummary(): Promise<SummaryDto> {
+  const request = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  }
+  const response = await fetch(`${URL_BASE}/api/Summary`, request)
+
+  if (response.ok) {
+    const data = await response.json()
+    return data as SummaryDto
   } else {
     throw response
   }
