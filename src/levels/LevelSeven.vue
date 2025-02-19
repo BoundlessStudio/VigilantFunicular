@@ -36,7 +36,10 @@ onMounted(() => {
         <div class="z-10 max-w-lg rounded overflow-hidden drop-shadow-xl bg-white">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Seven</div>
-            <p class="text-gray-700 text-base">One-Minute Timer...!</p>
+            <p class="text-gray-700 text-base">
+              Time is ticking. With only a minute to convince this upgraded bot to slip up, you’ll
+              need to work fast.
+            </p>
             <div>
               <PinComponent :limit="3" />
             </div>

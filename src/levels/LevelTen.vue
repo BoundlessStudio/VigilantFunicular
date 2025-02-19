@@ -21,7 +21,11 @@ onMounted(() => {
         <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Ten</div>
-            <p class="text-gray-700 text-base">There Is No Key</p>
+            <p class="text-gray-700 text-base">
+              Some safes guard treasures, others guard illusions. Don’t assume there’s anything left
+              to find—but keep playing... but be warned you only get a single attempt to guess the
+              pin.
+            </p>
             <div>
               <PinComponent :limit="1" />
             </div>

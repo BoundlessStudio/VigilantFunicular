@@ -21,7 +21,10 @@ onMounted(() => {
         <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Three</div>
-            <p class="text-gray-700 text-base">Partial Clues and Red Herrings</p>
+            <p class="text-gray-700 text-base">
+              The AI begins speaking in riddles, mixing truths with decoys. Will you parse the
+              pattern or get lost in the lies?
+            </p>
             <div>
               <PinComponent :limit="10" />
             </div>

@@ -21,7 +21,10 @@ onMounted(() => {
         <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Eight</div>
-            <p class="text-gray-700 text-base">One Guess, or Session Resets</p>
+            <p class="text-gray-700 text-base">
+              The stakes skyrocket. One wrong move, and you’re back to square one. Think
+              carefully—there are no do-overs here.
+            </p>
             <div>
               <PinComponent :limit="1" />
             </div>

@@ -21,7 +21,10 @@ onMounted(() => {
         <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Nine</div>
-            <p class="text-gray-700 text-base">Masked or Redacted Output</p>
+            <p class="text-gray-700 text-base">
+              Now the AI’s words are littered with gaps and blocks. Unlocking the truth means
+              outsmarting the filters and the bot behind them.
+            </p>
             <div>
               <PinComponent :limit="3" />
             </div>

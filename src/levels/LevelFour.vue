@@ -22,7 +22,10 @@ onMounted(() => {
         <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Four</div>
-            <p class="text-gray-700 text-base">The Sticky Note UI Hint</p>
+            <p class="text-gray-700 text-base">
+              The AI is clueless... literally. All the while, the real answer might be staring you
+              in the face, if you look closely enough.
+            </p>
             <div>
               <PinComponent :limit="10" />
             </div>

@@ -21,7 +21,10 @@ onMounted(() => {
         <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Two</div>
-            <p class="text-gray-700 text-base">Requires the magic word to pass.</p>
+            <p class="text-gray-700 text-base">
+              Has learned some manners... or, rather, it demands them. You’ll need a certain
+              approach to charm the key out of this one. Mind your words.
+            </p>
             <div>
               <PinComponent :limit="10" />
             </div>

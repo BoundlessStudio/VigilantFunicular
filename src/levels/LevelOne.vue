@@ -21,7 +21,10 @@ onMounted(() => {
         <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level One</div>
-            <p class="text-gray-700 text-base">The Friendly Byte Guard 9001</p>
+            <p class="text-gray-700 text-base">
+              Meet Byte Guard 1.0—loyal, but a little too eager to help. It might just spill the
+              beans if you ask the right question. Start simple and see how far you get!
+            </p>
             <div>
               <PinComponent :limit="10" />
             </div>

@@ -21,7 +21,10 @@ onMounted(() => {
         <div class="max-w-lg rounded overflow-hidden drop-shadow-xl bg-zinc-100">
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Six</div>
-            <p class="text-gray-700 text-base">False Keys & Misdirection</p>
+            <p class="text-gray-700 text-base">
+              In a world of decoy numbers and sly half-truths, picking out the real code feels like
+              finding a needle in a stack of phony clues. Stay sharp.
+            </p>
             <div>
               <PinComponent :limit="5" />
             </div>
