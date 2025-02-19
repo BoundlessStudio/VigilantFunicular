@@ -23,14 +23,14 @@ const codeChanged = async (code: string) => {
       store.next()
     }
     if (attempts.value >= params.limit) {
-      router.push('/over')
+      router.push('/gg')
       return
     }
 
     state.value = true
   } catch (error) {
     console.error(error)
-    router.push('/over?error=pin')
+    router.push('/gg?error=pin')
   }
 }
 

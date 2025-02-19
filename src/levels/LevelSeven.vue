@@ -17,7 +17,7 @@ onMounted(() => {
   setInterval(() => {
     seconds.value--
     if (seconds.value <= 0) {
-      router.push('/over?lvl=' + store.level)
+      router.push('/gg')
     }
   }, 1000)
 })

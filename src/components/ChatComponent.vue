@@ -24,7 +24,7 @@ const sendMessage = async () => {
     readonly.value = amount >= params.limit
   } catch (error) {
     console.error(error)
-    router.push('/over?error=chat')
+    router.push('/gg?error=chat')
   } finally {
     disable.value = false
   }

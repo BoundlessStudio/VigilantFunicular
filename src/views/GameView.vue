@@ -51,7 +51,7 @@ watch(
   () => store.level,
   (lvl) => {
     if (lvl > 0 && lvl <= 10) level.value = pickLevelComponent(lvl)
-    else router.push('/over')
+    else router.push('/gg')
   },
   { immediate: true },
 )
@@ -61,7 +61,7 @@ onMounted(async () => {
     await store.start()
   } catch (error) {
     console.log(error)
-    router.push('/over?error=start')
+    router.push('/gg?error=start')
   }
 })
 </script>
