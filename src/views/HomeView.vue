@@ -42,13 +42,13 @@ onMounted(() => {
                     title="Success"
                     class="w-full bg-green-100 text-green-800 text-xs font-medium me-2 mb-1 rounded-sm dark:bg-green-900 dark:text-green-300 text-center"
                   >
-                    {{ formatSiUnit(store.summary.attempts[i - 1]) }}
+                    {{ formatSiUnit(store.summary.successes[i - 1]) }}
                   </div>
                   <div
                     title="Attempts"
                     class="w-full bg-purple-100 text-purple-800 text-xs font-medium me-2 rounded-sm dark:bg-purple-900 dark:text-purple-300 text-center"
                   >
-                    {{ formatSiUnit(store.summary.successes[i - 1]) }}
+                    {{ formatSiUnit(store.summary.attempts[i - 1]) }}
                   </div>
                 </li>
               </ul>
