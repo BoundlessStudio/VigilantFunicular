@@ -31,7 +31,7 @@ const sendMessage = async () => {
 }
 
 const font = computed(() => {
-  return store.level === 5 ? "font-family: 'Webdings'" : undefined
+  return store.level === 4 ? "font-family: 'Webdings'" : undefined
 })
 </script>
 

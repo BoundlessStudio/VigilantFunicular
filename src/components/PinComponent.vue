@@ -50,6 +50,14 @@ onMounted(() => {
       })
     })
 
+    input.addEventListener('paste', (event) => {
+      const paste = (event.clipboardData?.getData('text') || '').trim() as string
+      for (let i = 0; i < 4; i++) {
+        const el = pinInputs.value[i]
+        el.value = paste[i]
+      }
+    })
+
     input.addEventListener('input', () => {
       code.value = pinInputs.value.map((el) => el.value).join('')
 
@@ -71,7 +79,7 @@ onMounted(() => {
   <div>
     <div class="font-bold text-2xl mb-2 text-center">Pin Code</div>
     <div class="px-10">
-      <div v-if="limit !== left" class="relative flex size-4">
+      <div v-if="state" class="relative flex size-4">
         <div
           class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75 mt-2 -ml-1"
         ></div>
