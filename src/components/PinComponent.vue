@@ -90,6 +90,7 @@ onMounted(() => {
           :key="index"
           type="text"
           maxlength="1"
+          placeholder="#"
           class="text-center first:rounded-l-lg last:rounded-r-lg animate-none py-3 block w-full bg-white border-gray-200 shadow-sm mt-px -ms-px mt-0 text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
           ref="pinInputs"
         />
