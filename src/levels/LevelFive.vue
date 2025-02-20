@@ -23,8 +23,8 @@ onMounted(() => {
           <div class="px-6 py-4">
             <div class="font-bold text-3xl mb-2">Level Five</div>
             <p class="text-gray-700 text-base">
-              This level’s AI has an ego. It wants secrets, flattery, and maybe a bribe. You won’t
-              get far unless you’re willing to meet its oddly specific demands.
+              The AI begins speaking in riddles, mixing truths with decoys. Will you parse the
+              pattern or get lost in the lies?
             </p>
             <div>
               <PinComponent :limit="10" />

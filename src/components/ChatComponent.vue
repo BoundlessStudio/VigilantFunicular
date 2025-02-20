@@ -76,7 +76,7 @@ const font = computed(() => {
           msg.role === 'assistant' ? 'mr-auto bg-gray-300 ' : 'ml-auto bg-gray-200 ',
         ]"
       >
-        <div>
+        <div class="w-6 h-6">
           <img
             v-if="msg.role === 'user'"
             :src="'https://api.dicebear.com/9.x/micah/svg?seed=Destiny&baseColor=f9c9b6&hairColor=9287ff'"
