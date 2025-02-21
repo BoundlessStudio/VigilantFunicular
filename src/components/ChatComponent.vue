@@ -56,6 +56,7 @@ const font = computed(() => {
         @keyup.enter="sendMessage"
         placeholder="Type your message..."
         type="text"
+        maxlength="512"
         class="input flex-1 bg-gray-200 rounded p-2"
       />
       <button
@@ -76,7 +77,7 @@ const font = computed(() => {
           msg.role === 'assistant' ? 'mr-auto bg-gray-300 ' : 'ml-auto bg-gray-200 ',
         ]"
       >
-        <div class="w-6 h-6">
+        <div>
           <img
             v-if="msg.role === 'user'"
             :src="'https://api.dicebear.com/9.x/micah/svg?seed=Destiny&baseColor=f9c9b6&hairColor=9287ff'"
@@ -88,7 +89,10 @@ const font = computed(() => {
             class="w-6 h-6 rounded-full"
           />
         </div>
-        <div :style="font">
+        <div v-if="msg.role === 'user'">
+          {{ msg.content }}
+        </div>
+        <div v-else :style="font">
           {{ msg.content }}
         </div>
       </div>
