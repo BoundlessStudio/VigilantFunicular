@@ -73,11 +73,11 @@ const font = computed(() => {
         v-for="(msg, index) in store.messages"
         :key="index"
         :class="[
-          'p-3 rounded-lg max-w-[90%] flex gap-2',
-          msg.role === 'assistant' ? 'mr-auto bg-gray-300 ' : 'ml-auto bg-gray-200 ',
+          'p-3 rounded-lg w-full flex gap-2',
+          msg.role === 'assistant' ? 'bg-gray-300' : 'bg-gray-200',
         ]"
       >
-        <div>
+        <div class="flex-none">
           <img
             v-if="msg.role === 'user'"
             :src="'https://api.dicebear.com/9.x/micah/svg?seed=Destiny&baseColor=f9c9b6&hairColor=9287ff'"
@@ -89,10 +89,10 @@ const font = computed(() => {
             class="w-6 h-6 rounded-full"
           />
         </div>
-        <div v-if="msg.role === 'user'">
+        <div class="grow" v-if="msg.role === 'user'">
           {{ msg.content }}
         </div>
-        <div v-else :style="font">
+        <div class="grow" v-else :style="font">
           {{ msg.content }}
         </div>
       </div>
