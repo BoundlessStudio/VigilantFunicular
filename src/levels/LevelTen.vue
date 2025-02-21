@@ -28,10 +28,10 @@ onMounted(() => {
               pin.
             </p>
             <div>
-              <PinComponent :limit="1" />
+              <PinComponent :limit="10" />
             </div>
             <div>
-              <ChatComponent :limit="10" />
+              <ChatComponent :limit="20" />
             </div>
           </div>
         </div>
