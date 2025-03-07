@@ -1,18 +1,45 @@
 <script setup lang="ts">
-// import { ref } from 'vue'
-import { onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '@/stores/game'
 import { formatSiUnit } from 'format-si-unit'
+
 const store = useGameStore()
 const router = useRouter()
+
+const loadingSuccesses = ref(Array(10).fill(0))
+const loadingAttempts = ref(Array(10).fill(0))
+let intervalId: number | null = null
 
 const startGame = () => {
   router.push('/game')
 }
 
+const updateLoadingNumbers = () => {
+  loadingSuccesses.value = loadingSuccesses.value.map(() => Math.floor(Math.random() * 100))
+  loadingAttempts.value = loadingAttempts.value.map(() => Math.floor(Math.random() * 100))
+}
+
 onMounted(() => {
   store.setup()
+  intervalId = setInterval(updateLoadingNumbers, 100)
+
+  store.$subscribe(() => {
+    if (store.summary.successes.length && store.summary.attempts.length) {
+      if (intervalId) {
+        clearInterval(intervalId)
+        intervalId = null
+      }
+      loadingSuccesses.value = store.summary.successes
+      loadingAttempts.value = store.summary.attempts
+    }
+  })
+})
+
+onUnmounted(() => {
+  if (intervalId) {
+    clearInterval(intervalId)
+  }
 })
 </script>
 
@@ -42,13 +69,13 @@ onMounted(() => {
                     title="Success"
                     class="w-full bg-green-100 text-green-800 text-xs font-medium me-2 mb-1 rounded-sm dark:bg-green-900 dark:text-green-300 text-center"
                   >
-                    {{ formatSiUnit(store.summary.successes[i - 1]) }}
+                    {{ formatSiUnit(loadingSuccesses[i - 1]) }}
                   </div>
                   <div
                     title="Attempts"
                     class="w-full bg-purple-100 text-purple-800 text-xs font-medium me-2 rounded-sm dark:bg-purple-900 dark:text-purple-300 text-center"
                   >
-                    {{ formatSiUnit(store.summary.attempts[i - 1]) }}
+                    {{ formatSiUnit(loadingAttempts[i - 1]) }}
                   </div>
                 </li>
               </ul>
