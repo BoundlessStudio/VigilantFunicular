@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '@/stores/game'
 import { formatSiUnit } from 'format-si-unit'
+import bolt from '../assets/bolt.png'
 
 const store = useGameStore()
 const router = useRouter()
@@ -44,6 +45,18 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <a
+    href="https://bolt.new/"
+    target="_blank"
+    rel="noopener"
+    class="fixed top-4 right-4 w-20 h-20 z-50"
+  >
+    <img
+      :src="bolt"
+      alt="Bolt Icon"
+      class="w-full h-full drop-shadow-lg bg-white rounded-full p-2 border border-neutral-200"
+    />
+  </a>
   <main class="min-h-screen h-full">
     <div class="container mx-auto flex flex-col md:flex-row">
       <div class="md:w-1/2">
